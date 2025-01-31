@@ -75,7 +75,7 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 ### Assignment Statement
 
 <table>
-<tr> <th>blvd</th><th>JavaScript</th> </tr>
+<tr> <th>NewLang</th><th>JavaScript</th> </tr>
 <tr>
 <td>
 
