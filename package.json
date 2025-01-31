@@ -1,0 +1,28 @@
+{
+  "name": "newlang",
+  "version": "1.0.0",
+  "description": "CMSI 3802",
+  "main": "newlang.js",
+  "scripts": {
+    "test": "c8 node --test test/**/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nalyd-ikuzus/NewLang.git"
+  },
+  "keywords": [
+    "1984"
+  ],
+  "author": "Dylan Suzuki, Donovan Felton, Gabriel Warner, Ahtziri Gutierrez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nalyd-ikuzus/NewLang/issues"
+  },
+  "homepage": "https://github.com/nalyd-ikuzus/NewLang#readme",
+  "dependencies": {
+    "ohm-js": "^17.1.0"
+  },
+  "devDependencies": {
+    "c8": "^10.1.3"
+  }
+}
