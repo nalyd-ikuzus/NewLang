@@ -15,7 +15,7 @@ Introducing NewLang: A Language based on George Orwells
 ### Comments:
 
 <table>
-<tr> <th>blvd</th><th>JavaScript</th> </tr>
+<tr> <th>NewLang</th><th>JavaScript</th> </tr>
 <tr>
 <td>
 
@@ -34,7 +34,7 @@ Introducing NewLang: A Language based on George Orwells
 ### Hello World
 
 <table>
-<tr> <th>blvd</th><th>JavaScript</th> </tr>
+<tr> <th>NewLang</th><th>JavaScript</th> </tr>
 <tr>
 <td>
 
