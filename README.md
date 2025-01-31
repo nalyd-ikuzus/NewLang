@@ -37,9 +37,9 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 
 - Add: `plus`
 - Subtract: `minus`
-- Multiply: `*`
-- Divide: `/`
-- Modulo: `%`
+- Multiply: `multiply`
+- Divide: `divid`
+- Modulo: `modulo`
 - Less than or equal: `<=`
 - Less than: `<`
 - Greater than or equal: `>=`
