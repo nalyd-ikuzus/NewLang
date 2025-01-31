@@ -10,11 +10,7 @@ Introducing NewLang: A Language based on George Orwells
 
 ### Features:
 
-- .blvd file extension
-- parentheses can change the precedence of operators
-- static, manifest typing
-- data structures similar to lists
-- reads like a script
+// FEATURES GO HERE
 
 ### Comments:
 
