@@ -4,7 +4,6 @@
   "description": "CMSI 3802 Language",
   "type": "module",
   "main": "newlang.js",
-  "type": "module",
   "scripts": {
     "test": "c8 --reporter=html --reporter=text node --test test/**/*.test.js"
   },
@@ -15,7 +14,6 @@
   "keywords": [
     "1984"
   ],
-  "author": "Dylan Suzuki, Donovan Felton, Gabriel Warner, Ahtziri Gutierrez, CJ Hanson",
   "author": "Dylan Suzuki, Donovan Felton, Gabriel Warner, Ahtziri Gutierrez, CJ Hansen",
   "license": "MIT",
   "bugs": {
