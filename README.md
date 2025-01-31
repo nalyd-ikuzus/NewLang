@@ -47,7 +47,6 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 - Not equal: `!=`
 - Logical AND: `and`
 - Logical OR: `or`
-- Prevent Reassignment: '#REASSIGNMENT IS CRIMETHOUGHT'
 - Define Immutable Function: 'newfunction'
 - Return: 'confess'
 - Equality Check: 'is'
