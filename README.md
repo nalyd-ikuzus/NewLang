@@ -58,7 +58,7 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 ### Variable Declaration
 
 <table>
-<tr> <th>blvd</th><th>JavaScript</th> </tr>
+<tr> <th>NewLang</th><th>JavaScript</th> </tr>
 <tr>
 <td>
 
@@ -92,7 +92,7 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 ### Functions
 
 <table>
-<tr> <th>blvd</th><th>JavaScript</th> </tr>
+<tr> <th>NewLang</th><th>JavaScript</th> </tr>
 <tr>
 <td>
 <code>SCENE string getFreeway has string fwy: 
@@ -114,7 +114,7 @@ END SCENE
 ### Loops
 
 <table>
-<tr> <th>blvd</th><th>JavaScript</th> </tr>
+<tr> <th>NewLang</th><th>JavaScript</th> </tr>
 <tr>
 <td>
 <code>ACTION number stars in range from 1, 6:
@@ -148,7 +148,7 @@ while(rating <= 5){
 ### Conditionals
 
 <table>
-<tr> <th>blvd</th><th>JavaScript</th> </tr>
+<tr> <th>NewLang</th><th>JavaScript</th> </tr>
 <tr>
 <td>
 <code>NOMINATE review is 1:
