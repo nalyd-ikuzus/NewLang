@@ -21,6 +21,7 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 -  everything is direct, and verbosity is minimized/highly specified keywords
 -  variable in a highly compact format
 -  all variable states are fixed
+-  no reassignment
 -  Use of recursion over loops to maintain the immutable and direct nature of the language
   
 #### Types
