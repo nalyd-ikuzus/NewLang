@@ -35,8 +35,8 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 
 #### Operators
 
-- Add: `+`
-- Subtract: `-`
+- Add: `plus`
+- Subtract: `minus`
 - Multiply: `*`
 - Divide: `/`
 - Modulo: `%`
