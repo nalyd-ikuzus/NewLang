@@ -1,9 +1,9 @@
 
 
 # NewLang
-
-Introducing NewLang: A Language based on George Orwells
 //INTRO GOES HERE
+
+Introducing NewLang: A Language Based on George Orwell, In the year 2025, this world has become a playground of division and violence. The division has come from the ability of having too much freedom and individuality. Enter NewLang, Inspired by Newspeak from 1984, NewLang strips away ambiguity, leaving only what is needed, clear, and enforceable. There are no unnecessary loops—only direct, optimized execution. There are no verbose errors—only "ungood state". Designed for a world where code must be loyal, compact, and unbreakable, NewLang makes ure  that programmers write only what is plusgood, with no room for thoughtcrime like inefficiency or ambiguity. In NewLang, simplicity is strength, and verbosity is weakness. Welcome to the future of programming—where every line is truth. A new world. 
 
 
 ## Language Overview:
