@@ -45,7 +45,7 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 <tr>
 <td>
 
-<code>say "Hello, World!"--</code>
+<code>speak("BIG BROTHER IS WATCHING")</code>
 
 </td>
 <td>
@@ -62,12 +62,12 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 <tr>
 <td>
 
-<code>CAST string actor as "lead"--</code>
+<code>newstring x is "Ignorance is strength"</code>
 
 </td>
 <td>
 
-<code>let actor = "lead"</code>
+<code>const x = "Ignorance is strength"</code>
 
 </td>
 </tr> </table>
@@ -79,12 +79,12 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 <tr>
 <td>
 
-<code>RECAST x as x + 1--</code>
+<code>#REASSIGNMENT IS CRIMETHOUGHT</code>
 
 </td>
 <td>
 
-<code>x = x + 1</code>
+<code>x = y</code>
 
 </td>
 </tr> </table>
@@ -95,17 +95,15 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 <tr> <th>NewLang</th><th>JavaScript</th> </tr>
 <tr>
 <td>
-<code>SCENE string getFreeway has string fwy: 
-    CAST string  fwy1 as "405"--
-    EXIT WITH fwy1--
-END SCENE
+<code>newfunction goodplus (x, y){
+    confess x plus y
+}
 </code>
 
 </td>
 <td>
-<code>function getFreeway(fwy){
-    let fwy1 = "405"
-    return fwy1
+<code>function add (x, y) {
+    return x + y;
 }
 </code>
 </td>
@@ -151,23 +149,19 @@ while(rating <= 5){
 <tr> <th>NewLang</th><th>JavaScript</th> </tr>
 <tr>
 <td>
-<code>NOMINATE review is 1:
-    say "1 Star"--
-RUNNER-UP review is 2:
-    say "2 Stars"--
-SUPPORTING:
-    say "3 or more stars"--
+<code>if thought is untruth {
+    speak("Miniluv")
+} elif thought is truth {
+    speak("Minitrue")
+}
 </code>
 </td>
 <td>
-<code>if(review == 1) {
-    console.log("1 Star")
+<code>if(!thought) {
+    console.log("Ministry of Love")
 } 
-else if(review == 2){
-    console.log("2 Star")
-} 
-else {
-    console.log("3 or more stars")
+else if(thought){
+    console.log("Ministry of Truth")
 }
 </code>
 </td>
