@@ -43,7 +43,7 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 - Less than: `<`
 - Greater than or equal: `>=`
 - Greater than: `>`
-- Equal: `==`
+- Equal: `is`
 - Not equal: `!=`
 - Logical AND: `and`
 - Logical OR: `or`
