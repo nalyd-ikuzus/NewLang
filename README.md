@@ -22,7 +22,7 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 -  variable in a highly compact format
 -  all variable states are fixed
 -  Use of recursion over loops to maintain the immutable and direct nature of the language
--  
+  
 #### Types
 
 - Num
@@ -32,7 +32,7 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 - Dict
 - Set
 
-## Operators
+#### Operators
 
 - Add: `+`
 - Subtract: `-`
