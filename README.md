@@ -1,7 +1,6 @@
 
 
 # NewLang
-//INTRO GOES HERE
 
 **Introducing NewLang: A Language Based on George Orwell**
 
@@ -18,7 +17,7 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 
 ### Features:
 
-// FEATURES GO HERE
+- everything is immutable
 
 ### Comments:
 
