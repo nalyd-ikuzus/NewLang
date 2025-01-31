@@ -19,12 +19,12 @@ Introducing NewLang: A Language based on George Orwells
 <tr>
 <td>
 
-<code>(/War is Peace)</code>
+<code>#WarIsPeace</code>
 
 </td>
 <td>
 
-<code>//War is Peace</code>
+<code>//War Is Peace</code>
 
 </td>
 </tr> </table>
