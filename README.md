@@ -3,7 +3,15 @@
 # NewLang
 //INTRO GOES HERE
 
-Introducing NewLang: A Language Based on George Orwell, In the year 2025, this world has become a playground of division and violence. The division has come from the ability of having too much freedom and individuality. Enter NewLang, Inspired by Newspeak from 1984, NewLang strips away ambiguity, leaving only what is needed, clear, and enforceable. There are no unnecessary loops—only direct, optimized execution. There are no verbose errors—only "ungood state". Designed for a world where code must be loyal, compact, and unbreakable, NewLang makes ure  that programmers write only what is plusgood, with no room for thoughtcrime like inefficiency or ambiguity. In NewLang, simplicity is strength, and verbosity is weakness. Welcome to the future of programming—where every line is truth. A new world. 
+**Introducing NewLang: A Language Based on George Orwell**
+
+In the year 2025, the programming domain has become a playground of division and ambiguity. With so many choices—C, Java, JavaScript—how can we decide which one to master? This confusion stems from too much freedom, too much individuality. But now, a new language emerges to solve this problem: **NewLang**.
+
+Inspired by Newspeak from Orwell's *1984*, NewLang strips away all that is unnecessary, leaving only what is **needed**, **clear**, and **enforceable**. There are no superfluous loops—only **direct**, **optimized execution**. There are no verbose errors—only **"ungood state"**. In this world, there is no room for inefficiency or ambiguity. **NewLang** ensures that every programmer writes only what is **plusgood**, adhering to the Party-approved standards of clarity and precision.
+
+Designed for a future where code is **loyal, compact**, and **unbreakable**, NewLang offers a programming experience like no other: one where **simplicity is strength**, and **verbosity is weakness**. In **NewLang**, there is no space for thoughtcrime. Every line of code reflects the ultimate truth, the ultimate purpose.
+
+Welcome to **the future of programming**—a future free of choice, free of excess, where **every line is truth**. A new world. An Ultimate world.
 
 
 ## Language Overview:
