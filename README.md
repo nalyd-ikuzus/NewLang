@@ -19,12 +19,12 @@ Introducing NewLang: A Language based on George Orwells
 <tr>
 <td>
 
-<code>(note: take a drive through Sunset Blvd!)</code>
+<code>(/War is Peace)</code>
 
 </td>
 <td>
 
-<code>//take a drive through Sunset Blvd!</code>
+<code>//War is Peace</code>
 
 </td>
 </tr> </table>
