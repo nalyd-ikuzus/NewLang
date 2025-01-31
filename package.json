@@ -1,7 +1,8 @@
 {
   "name": "newlang",
   "version": "1.0.0",
-  "description": "CMSI 3802",
+  "description": "CMSI 3802 Language",
+  "type": "module",
   "main": "newlang.js",
   "scripts": {
     "test": "c8 node --test test/**/*.test.js"
