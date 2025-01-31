@@ -1,7 +1,6 @@
-"SCENE number sumList has list:
-    CAST number total as 0--
-    PERFORM index in range from 0, list length:
-        total plus list at index--
-    GIVE BACK total--
-END SCENE
-"
+newfunction listplus (list, i) {
+    if i is 0 {
+        confess 0
+    }
+    confess list[i] + listplus(list, i - 1)
+}

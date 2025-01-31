@@ -95,7 +95,7 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 <tr>
 <td>
 
-<code>newstring x is "Ignorance is strength"</code>
+<code>newtext x is "Ignorance is strength"</code>
 
 </td>
 <td>

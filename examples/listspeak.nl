@@ -1,5 +1,7 @@
-"SCENE performArrayDisplay has list:
-    PERFORM index in range from 0, list length:
-        say list at index--
-END SCENE
-"
+newfunction listplus (list, i) {
+    if i is 0 {
+        confess
+    }
+    speak(list[i])
+    confess listplus(list, i - 1)
+}
