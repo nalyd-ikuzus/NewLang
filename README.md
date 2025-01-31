@@ -32,6 +32,22 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 - Dict
 - Set
 
+## Operators
+
+- Add: `+`
+- Subtract: `-`
+- Multiply: `*`
+- Divide: `/`
+- Modulo: `%`
+- Less than or equal: `<=`
+- Less than: `<`
+- Greater than or equal: `>=`
+- Greater than: `>`
+- Equal: `==`
+- Not equal: `!=`
+- Logical AND: `and`
+- Logical OR: `or`
+
 ### Comments:
 
 <table>
