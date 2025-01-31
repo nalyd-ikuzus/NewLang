@@ -1,12 +1,9 @@
 
 
-# blvd
+# NewLang
 
-Introducing Blvd: A Cinematic Approach to Programming
-
-Whether you are a Los Angeles native, visitor, or admirer, it's likely that you are familiar with the city's iconic entertainment destinations. Many of which are linked to the famous Sunset Boulevard.
-
-Blvd is a statically-typed programming language whose syntax is influenced by movie scripts. With its simple design, Blvd allows you to be the creative director of your own programming projects.
+Introducing NewLang: A Language based on George Orwells
+//INTRO GOES HERE
 
 
 ## Language Overview:
