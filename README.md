@@ -126,21 +126,6 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 }
 </code>
 </td>
-</tr>
-
-<td>
-<code>CAST number rating as 1--
-PERFORM rating <= 5:
-    say "less than 5 stars"--
-</code>
-</td>
-<td>
-<code>let rating = 1
-while(rating <= 5){
-    console.log(rating)
-}
-</code>
-</td>
 </tr> </table>
 
 ### Conditionals
