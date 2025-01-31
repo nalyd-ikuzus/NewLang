@@ -115,14 +115,14 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 <tr> <th>NewLang</th><th>JavaScript</th> </tr>
 <tr>
 <td>
-<code>ACTION number stars in range from 1, 6:
-    say stars--
-CUT
+<code>for(newnum i is 0; i < 2; iplus){
+    speak("BIG BROTHER")
+}
 </code>
 </td>
 <td>
-<code>for(let stars = 1; stars < 6; stars++){
-    console.log(stars)
+<code>for(let i = 1; i < 2; i++){
+    console.log("Hello")
 }
 </code>
 </td>
