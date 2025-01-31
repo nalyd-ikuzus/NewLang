@@ -34,11 +34,10 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 - Set
 
 #### Operators
-
 - Add: `plus`
 - Subtract: `minus`
 - Multiply: `multiply`
-- Divide: `divid`
+- Divide: `divide`
 - Modulo: `modulo`
 - Less than or equal: `<=`
 - Less than: `<`
@@ -48,6 +47,11 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 - Not equal: `!=`
 - Logical AND: `and`
 - Logical OR: `or`
+- Prevent Reassignment: '#REASSIGNMENT IS CRIMETHOUGHT'
+- Define Immutable Function: 'newfunction'
+- Return: 'confess'
+- Equality Check: 'is'
+- Else If: 'elif'
 
 ### Comments:
 
