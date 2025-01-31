@@ -17,7 +17,20 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 
 ### Features:
 
-- everything is immutable
+-  everything is immutable
+-  everything is direct, and verbosity is minimized/highly specified keywords
+-  variable in a highly compact format
+-  all variable states are fixed
+-  Use of recursion over loops to maintain the immutable and direct nature of the language
+-  
+#### Types
+
+- Num
+- Text
+- List
+- Bool
+- Dict
+- Set
 
 ### Comments:
 
