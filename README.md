@@ -19,7 +19,7 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 
 -  Everything is immutable to promote communication within the Party
 -  Everything is direct, and verbosity is minimized/highly specified keywords to ensure efficiency
--  all variable states are fixed
+-  All variable states are fixed
 -  No reassignment
 -  Use of recursion over loops to maintain the immutable and direct nature of the language
   
