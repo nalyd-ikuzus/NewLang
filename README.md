@@ -2,7 +2,7 @@
 
 # NewLang
 
-**Introducing NewLang: A Language Based on George Orwell**
+**Introducing NewLang: A Language Based on George Orwell's 1984**
 
 In the year 2025, the programming domain has become a playground of division and ambiguity. With so many choices—C, Java, JavaScript—how can we decide which one to master? This confusion stems from too much freedom, too much individuality. But now, a new language emerges to solve this problem: **NewLang**.
 
@@ -17,9 +17,8 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 
 ### Features:
 
--  everything is immutable
--  everything is direct, and verbosity is minimized/highly specified keywords
--  variable in a highly compact format
+-  everything is immutable to promote communication within the Party
+-  everything is direct, and verbosity is minimized/highly specified keywords to ensure efficiency
 -  all variable states are fixed
 -  no reassignment
 -  Use of recursion over loops to maintain the immutable and direct nature of the language
@@ -38,18 +37,17 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 - Subtract: `minus`
 - Multiply: `multiply`
 - Divide: `divide`
-- Modulo: `modulo`
-- Less than or equal: `<=`
-- Less than: `<`
-- Greater than or equal: `>=`
-- Greater than: `>`
+- Modulo: `remain`
+- Less than or equal: `lessis`
+- Less than: `less`
+- Greater than or equal: `moreis`
+- Greater than: `more`
 - Equal: `is`
-- Not equal: `!=`
+- Not equal: `unis`
 - Logical AND: `and`
 - Logical OR: `or`
 - Define Immutable Function: 'newfunction'
 - Return: 'confess'
-- Equality Check: 'is'
 - Else If: 'elif'
 
 ### Comments:
