@@ -1,4 +1,4 @@
-<img src=./docs/Logo.jpg width="500" height="500">
+<img src=./docs/Logo.JPG width="500" height="500">
 
 # NewLang
 
