@@ -17,10 +17,10 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 
 ### Features:
 
--  everything is immutable to promote communication within the Party
--  everything is direct, and verbosity is minimized/highly specified keywords to ensure efficiency
+-  Everything is immutable to promote communication within the Party
+-  Everything is direct, and verbosity is minimized/highly specified keywords to ensure efficiency
 -  all variable states are fixed
--  no reassignment
+-  No reassignment
 -  Use of recursion over loops to maintain the immutable and direct nature of the language
   
 #### Types
