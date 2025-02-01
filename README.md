@@ -28,12 +28,13 @@ Welcome to **the future of programming**—a future free of choice, free of exce
   
 #### Types
 
-- Num
-- Text
-- List
-- Bool
-- Dict
-- Set
+- Num: newnum
+- Text: newtext
+- List: newlist
+- Bool: newbool
+- Dict: newdict
+- Set: newset
+- Function: newfunction
 
 #### Operators
 - Add: `plus`
