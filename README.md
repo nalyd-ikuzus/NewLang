@@ -2,7 +2,7 @@
 <img src="docs/logo.JPG" width="500" height="500">
 </p>
 
-
+![](./docs/logo.JPG)
 # NewLang
 
 **Introducing NewLang: A Language Based on George Orwell's 1984**
