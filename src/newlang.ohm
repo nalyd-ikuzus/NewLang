@@ -24,7 +24,7 @@ NewLang {
 
   // Conditionals: no extra parentheses around the expression.
   IfStatement
-    = "if" _ Expression _ Block ElsePart?
+    = "if" _ Expression _ Block ElsePart
 
   ElsePart
     = (ElseIfClause)* ElseClause?
@@ -66,7 +66,7 @@ NewLang {
     = AddExp ( _ CompOp _ AddExp)*
 
   CompOp
-    = "is" | "unis" | "less" | "lessis" | "more" | "moreis"
+    = "is" | "unis" | "lessis" | "less" | "moreis" | "more"
 
   // Truth values (booleans)
   truthValue
@@ -96,9 +96,11 @@ NewLang {
     | "+" PriExp              --pos
     | "-" PriExp              --neg
     | ident CallOrIndex*      --idCall
-    | number
-    | String
-    | truthValue
+    | number  --number
+    | String --string
+    | truthValue --boolean
+    | List  "[" Expression "]" --listIndex
+    | List
 
   // Function call or array indexing.
   CallOrIndex
@@ -113,10 +115,13 @@ NewLang {
     = letter alnum*             --ident
 
   number
-    = digit+ ("." digit+)?       --number
+    = digit+ ("." digit+)? (("E" | "e") ("+" | "-")? digit+)?   --number
 
   String
     = "\"" (~"\"" any)* "\""
+    
+  List
+   = "[" ArgumentList "]"
 
   // Whitespace and Comments
   _
