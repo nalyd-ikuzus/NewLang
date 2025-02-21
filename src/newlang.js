@@ -1,9 +1,10 @@
 import * as fs from "fs";
 import * as ohm from "ohm-js";
 import stringify from "graph-stringify";
+import compile from "./compiler.js";
 
 
-console.log("BIG BROTHER IS WATCHING");
+//"BIG BROTHER IS WATCHING"
 
 const help = `NewLang compiler
 
@@ -19,7 +20,7 @@ Prints to stdout according to <outputType>, which must be one of:
 
 async function compileFromFile(filename, outputType) {
   try {
-    const buffer = await fs.readFile(filename)
+    const buffer = fs.readFileSync(filename, "utf8")
     const compiled = compile(buffer.toString(), outputType)
     console.log(stringify(compiled, "kind") || compiled)
   } catch (e) {
