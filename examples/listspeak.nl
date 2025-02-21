@@ -3,5 +3,5 @@ newfunction listplus (list, i) {
         confess
     }
     speak(list[i])
-    confess listplus(list, i - 1)
+    confess listplus(list, i minus 1)
 }

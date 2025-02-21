@@ -1,4 +1,4 @@
-MyLanguage {
+NewLang {
   Program
     = Statement*
 
