@@ -112,7 +112,7 @@ NewLang {
 
   // Lexical Elements
   ident
-    = letter alnum*             --ident
+    = ~keyword letter alnum*             --ident
 
   number
     = digit+ ("." digit+)? (("E" | "e") ("+" | "-")? digit+)?   --number
@@ -130,4 +130,9 @@ NewLang {
   comment
     = ("//" (~"\n" any)*)
     | ("#" (~"\n" any)*)
+    
+    keyword = "multiply" | "divide" | "remain" |  "is" | "unis" | "lessis" | "less" | "moreis" 
+    | "more" | "plus" | "minus" | "newnum" | "newtext" | "newlist" | "newbool" 
+    | "newdict" | "newset" | "newfunction" | "truth" | "untruth" | "and" | "or" | "if" | "elif"
+    | "else"
 }
