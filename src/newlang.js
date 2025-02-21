@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as ohm from "ohm-js";
-import { stringify } from "graph-stringify";
+import stringify from "graph-stringify";
+
 
 console.log("BIG BROTHER IS WATCHING");
 
