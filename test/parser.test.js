@@ -34,11 +34,9 @@ const syntaxChecks = [
 const syntaxErrors = [
   ["non-letter in an identifier", "newnum ab😭c is 2;", /Line 1, col 10:/],
   ["malformed number", "newnum x is 2.", /Line 1, col 15:/],
-  //["a float with an E but no exponent", "newnum x is 5E multiply 11", /Line 1, col 10:/],
   ["a missing right operand", "speak(5 -);", /Line 1, col 9:/],
   ["a non-operator", "speak(7 multiply ((2 _ 3));", /Line 1, col 22:/],
-  ["an expression starting with a )", "confess );", /Line 1, col 9:/],
-  //["a statement starting with expression", "x multiply 5;", /Line 1, col 3:/],
+  ["an expression starting with a )", "confess );", /Line 1, col 9:/],  
   ["an illegal statement on line 2", "speak(5);\nconfess );", /Line 2, col 9:/],
   ["a statement starting with a )", "speak(5);\n)", /Line 2, col 1:/],
   ["an expression starting with a *", "newnum x is multiply 71", /Line 1, col 13:/],
