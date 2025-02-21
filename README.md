@@ -1,29 +1,29 @@
 <p align="left">
 <img src="docs/logo.JPG" width="500" height="500">
 </p>
-# NewLang
 
-**Introducing NewLang: A Language Based on George Orwell's 1984**
+### **Introducing NewLang: A Language Based on George Orwell's 1984**
+
+By: Donovan Felton, Dylan Suzuki, CJ Hansen, Gabriel Werner, Juan Ballesteros and Ahtziri Gutierrez
 
 In the year 2025, the programming domain has become a playground of division and ambiguity. With so many choices—C, Java, JavaScript—how can we decide which one to master? This confusion stems from too much freedom, too much individuality. But now, a new language emerges to solve this problem: **NewLang**.
 
-Inspired by Newspeak from Orwell's *1984*, NewLang strips away all that is unnecessary, leaving only what is **needed**, **clear**, and **enforceable**. There is no superfluous code—only **direct**, **optimized execution**. There are no verbose errors—only **"ungood state"**. In this world, there is no room for inefficiency or ambiguity. **NewLang** ensures that every programmer writes only what is **plusgood**, adhering to the Party-approved standards of clarity and precision.
+Inspired by Newspeak from Orwell's _1984_, NewLang strips away all that is unnecessary, leaving only what is **needed**, **clear**, and **enforceable**. There is no superfluous code—only **direct**, **optimized execution**. There are no verbose errors—only **"ungood state"**. In this world, there is no room for inefficiency or ambiguity. **NewLang** ensures that every programmer writes only what is **plusgood**, adhering to the Party-approved standards of clarity and precision.
 
 Designed for a future where code is **loyal, compact**, and **unbreakable**, NewLang offers a programming experience like no other: one where **simplicity is strength**, and **verbosity is weakness**. In **NewLang**, there is no space for thoughtcrime. Every line of code reflects the ultimate truth, the ultimate purpose.
 
 Welcome to **the future of programming**—a future free of choice, free of excess, where **every line is truth**. A new world. An Ultimate world.
 
-
 ## Language Overview:
 
 ### Features:
 
--  Everything is immutable to promote communication within the Party
--  Everything is direct, and verbosity is minimized/highly specified keywords to ensure efficiency
--  All variable states are fixed
--  No reassignment
--  Use of recursion over loops to maintain the immutable and direct nature of the language
-  
+- Everything is immutable to promote communication within the Party
+- Everything is direct, and verbosity is minimized/highly specified keywords to ensure efficiency
+- All variable states are fixed
+- No reassignment
+- Use of recursion over loops to maintain the immutable and direct nature of the language
+
 #### Types
 
 - Num: `newnum`
@@ -35,6 +35,7 @@ Welcome to **the future of programming**—a future free of choice, free of exce
 - Function: `newfunction`
 
 #### Operators
+
 - Add: `plus`
 - Subtract: `minus`
 - Multiply: `multiply`
