@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/nalyd-ikuzus/NewLang#readme",
   "dependencies": {
+    "graph-stringify": "^1.1.0",
     "ohm-js": "^17.1.0"
   },
   "devDependencies": {
