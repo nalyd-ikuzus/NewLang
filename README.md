@@ -4,7 +4,7 @@
 
 ### **Introducing NewLang: A Language Based on George Orwell's 1984**
 
-By: Donovan Felton, Dylan Suzuki, CJ Hansen, Gabriel Werner, Juan Ballesteros and Ahtziri Gutierrez
+By: Donovan Felton, Dylan Suzuki, CJ Hansen, Gabriel Warner, Juan Ballesteros and Ahtziri Gutierrez
 
 In the year 2025, the programming domain has become a playground of division and ambiguity. With so many choices—C, Java, JavaScript—how can we decide which one to master? This confusion stems from too much freedom, too much individuality. But now, a new language emerges to solve this problem: **NewLang**.
 
