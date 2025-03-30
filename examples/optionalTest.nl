@@ -1,4 +1,4 @@
-newfunction returnOptional(i : num) : text? {
+newfunction returnOptional(i : float) : text? {
 	if i less 1 {
     	confess "Less than one"
     } else {
