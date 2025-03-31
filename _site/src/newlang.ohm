@@ -1,0 +1,138 @@
+NewLang {
+  Program
+    = Statement*
+
+  // Statements
+  Statement
+    = FunctionDefinition
+    | VariableDeclaration
+    | IfStatement
+    | ExpressionStatement
+    | ConfessStatement
+    | comment
+
+  // Variable declarations use one of the type keywords.
+  VariableDeclaration
+    = TypeKeyword _ ident _ "is" _ Expression
+
+  TypeKeyword
+    = "newnum" | "newtext" | "newlist" | "newbool" | "newdict" | "newset"
+
+  // A function definition using "newfunction"
+  FunctionDefinition
+    = "newfunction" _ ident _ "(" ParameterList? ")" _ Block
+
+  // Conditionals: no extra parentheses around the expression.
+  IfStatement
+    = "if" _ Expression _ Block ElsePart
+
+  ElsePart
+    = (ElseIfClause)* ElseClause?
+
+  ElseIfClause
+    = "elif" _ Expression _ Block
+
+  ElseClause
+    = "else" _ Block
+
+  // A block is a sequence of statements in braces.
+  Block
+    = "{" Statement* "}"
+
+  // Expression statement (for function calls like speak(...))
+  ExpressionStatement
+    = Expression (";")?
+
+  // The confess statement (used for returning values)
+  ConfessStatement
+    = "confess" ( _ (Expression | truthValue) )? (";")?
+
+  // Function parameters
+  ParameterList
+    = ident ( _ "," _ ident)*
+
+  // Expressions
+  Expression
+    = OrExpr
+
+  OrExpr
+    = AndExpr ( _ "or" _ AndExpr )*
+
+  AndExpr
+    = Comparison ( _ "and" _ Comparison )*
+
+  // Comparisons: equal, not equal, less/less or equal, more/more or equal.
+  Comparison
+    = AddExp ( _ CompOp _ AddExp)*
+
+  CompOp
+    = "is" | "unis" | "lessis" | "less" | "moreis" | "more"
+
+  // Truth values (booleans)
+  truthValue
+    = "truth" | "untruth"
+
+  // Arithmetic operations:
+  // Addition and subtraction
+  AddExp
+    = AddExp _ "plus" _ MulExp   --plus
+    | AddExp _ "minus" _ MulExp  --minus
+    | MulExp
+
+  // Multiplication, division, and modulo (remain)
+  MulExp
+    = MulExp _ ( "multiply" | "divide" | "remain" ) _ ExpExp  --mulop
+    | ExpExp
+
+  // Exponentiation, using "^"
+  ExpExp
+    = PriExp _ "^" _ ExpExp  --power
+    | PriExp
+
+  // Primary expressions: parentheses, numbers, strings, truth values,
+  // or identifiers that can be followed by function-call or indexing chains.
+  PriExp
+    = "(" _ Expression _ ")"  --paren
+    | "+" PriExp              --pos
+    | "-" PriExp              --neg
+    | ident CallOrIndex*      --idCall
+    | number  --number
+    | String --string
+    | truthValue --boolean
+    | List  "[" Expression "]" --listIndex
+    | List
+
+  // Function call or array indexing.
+  CallOrIndex
+    = "(" ArgumentList? ")"   --call
+    | "[" Expression "]"      --index
+
+  ArgumentList
+    = Expression ( _ "," _ Expression)*
+
+  // Lexical Elements
+  ident
+    = ~keyword letter alnum*             --ident
+
+  number
+    = digit+ ("." digit+)? (("E" | "e") ("+" | "-")? digit+)?   --number
+
+  String
+    = "\"" (~"\"" any)* "\""
+    
+  List
+   = "[" ArgumentList "]"
+
+  // Whitespace and Comments
+  _
+    = (space | comment)*
+
+  comment
+    = ("//" (~"\n" any)*)
+    | ("#" (~"\n" any)*)
+    
+    keyword = "multiply" | "divide" | "remain" |  "is" | "unis" | "lessis" | "less" | "moreis" 
+    | "more" | "plus" | "minus" | "newnum" | "newtext" | "newlist" | "newbool" 
+    | "newdict" | "newset" | "newfunction" | "truth" | "untruth" | "and" | "or" | "if" | "elif"
+    | "else"
+}
