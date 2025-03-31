@@ -1,0 +1,1 @@
+speak("BIG BROTHER IS WATCHING")
