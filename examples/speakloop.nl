@@ -1,4 +1,4 @@
-newfunction speakloop (i, end){
+newfunction speakloop (i : int, end : int) : void{
     if i is end {
         confess
     } else {

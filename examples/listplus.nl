@@ -1,4 +1,4 @@
-newfunction listplus (list, i) {
+newfunction listplus (list : float[], i : float) : float {
     if i is 0 {
         confess 0
     }

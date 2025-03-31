@@ -1,4 +1,4 @@
-newfunction listplus (list, i) {
+newfunction listspeak (list : text[], i : int) : void {
     if i is 0 {
         confess
     }
