@@ -1,1 +1,0 @@
-newtext x is "Ignorance is strength"
