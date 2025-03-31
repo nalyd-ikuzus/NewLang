@@ -27,14 +27,6 @@ export const stringType = "string"
 export const voidType = "void"
 export const anyType = "any"
 
-// export function dictType(name, fields) {
-//     return { kind: "DictType", name, fields } //untested
-// }
-
-// export function field(name, type) {
-//     return { kind: "Field", name, type } //untested
-// }
-
 export function functionDeclaration(fun) {
     return { kind: "FunctionDeclaration", fun }
 }

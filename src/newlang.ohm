@@ -21,9 +21,7 @@ NewLang {
     = newnum 
     | newtext 
     | newlist 
-    | newbool 
-    //| newdict 
-    | newset
+    | newbool  
 
   // A function definition using "newfunction"
   FunctionDefinition
@@ -148,7 +146,6 @@ NewLang {
     | truthValue --boolean
     | List  "[" Expression "]" --listIndex
     | List
-    // | Dict
 
   // Function call or array indexing.
   CallOrIndex
@@ -171,11 +168,6 @@ NewLang {
     
   List
    = "[" ArgumentList "]"
-   
-//  KeyValPairs = ident ":" Expression
-   
-  // Dict
-  // 	= "{" ListOf<KeyValPairs, ","> "}"
 
   // Whitespace and Comments
   _
@@ -202,8 +194,6 @@ NewLang {
     newtext = "newtext" ~idchar
     newlist = "newlist" ~idchar
     newbool = "newbool" ~idchar
-    // newdict = "newdict" ~idchar
-    newset = "newset" ~idchar
     newfunction = "newfunction" ~idchar
     truth = "truth" ~idchar
     untruth = "untruth" ~idchar
@@ -219,6 +209,6 @@ NewLang {
     
     keyword = multiply | divide | remain |  is | unis | lessis | less | moreis 
     | more | plus | minus | newnum | newtext | newlist | newbool 
-    | newset | newfunction | truth | untruth | and | or | if | elif
-    | else | speak | confess | exp //| newdict
+    | newfunction | truth | untruth | and | or | if | elif
+    | else | speak | confess | exp 
 }

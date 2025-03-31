@@ -1,7 +1,5 @@
 import * as core from "./core.js"
 
-
-
 export default function analyze(match) {
     const grammar = match.matcher.grammar
 
@@ -88,7 +86,6 @@ export default function analyze(match) {
     }
 
     function equivalent(t1, t2) {
-      console.log(`${t1} and ${t2} got to assignable - not function types ${t1?.kind} of ${t1.baseType} and ${t2?.kind} of ${t2.baseType}`)
       return ( t1 === t2 ||
         (t1?.kind === "OptionalType" &&
         t2?.kind === "OptionalType" &&
@@ -115,7 +112,6 @@ export default function analyze(match) {
 
     function mustBeAssignable(e, { toType: type }, at) {
       const prefix = at.at.source.getLineAndColumnMessage()
-      console.log(`${prefix} Trying to assign ${typeDescription(e.type)} to ${typeDescription(type)}`)
       const source = typeDescription(e.type)
       const target = typeDescription(type)
       const message = `Cannot assign a ${source} to a ${target}`
@@ -153,57 +149,64 @@ export default function analyze(match) {
     //Builder
     const builder = grammar.createSemantics().addOperation("rep", {
       Program(statements) {
+        //Program is just a collection of statements
         return core.program(statements.children.map(s => s.rep()))
       },
 
       ReturnType_recurse(type) {
+        //Any type that isn't void - just defers to their normal representations
         return type.rep()
       },
 
       ReturnType_void(_void) {
+        //Void type - only usable for function return types
         return core.voidType
       },
 
       Type_list(type, _brackets) {
+        //List type - ensures that type comparison works by making sure we wrap the baseType in a listType
         return core.listType(type.sourceString)
       },
 
       Type_optional(type, _questionmark) {
+        //Optional type - ensures that type comparison works by making sure we wrap the baseType in a optionalType
         return core.optionalType(type.sourceString)
       },
 
+       //Simple type - text, int, float, or bool
       Type_simple(type) { return type.sourceString },
 
       FunctionDefinition(_newfunc, id, _openparens, parameters, _closeparens, _colon, type, block) {
+        //Ensures the id isn't already declares and then defines the function
         mustNotAlreadyBeDeclared(id.sourceString, { at: id })
         const fun = core.fun(id.sourceString)
         context.add(id.sourceString, fun)
 
+        //Child context for inner local vars and deal with parameters (including putting them into the child context)
         context = context.newChildContext({ function: fun })
         fun.params = parameters.rep()
 
+        //Deal with function typing
         const paramTypes = fun.params.map(param => param.type)
         const returnType = type.rep()
-        console.log(`${fun.name} has return type: ${returnType}, which is a ${returnType?.kind} of ${returnType?.baseType}`)
         mustBeAType(returnType, { at: type })
         fun.type = core.functionType(paramTypes, returnType)
 
-        console.log("Making a function: ", fun)
-
+        //Generate body representation
         fun.body = block.rep()
 
+        //Make sure we reset the context so we aren't stuck in the inner context
         context = context.parent
-
-        
-                
         return core.functionDeclaration(fun)
       },
 
       ParameterList(params) {
+        //Defer parameters
         return params.asIteration().children.map((p) => p.rep())
       },
 
       Parameter(id, _colon, type) {
+        //Ensure the parameters aren't already declared and then put them into the context
         mustNotAlreadyBeDeclared(id.sourceString, id)
         const param = core.variable(id.sourceString, false, type.rep())
         context.add(id.sourceString, param)
@@ -211,6 +214,7 @@ export default function analyze(match) {
       },
 
       VariableDeclaration_certain(TypeKeyword, id, _eq, exp) {
+        //Ensure the variable isn't already declared and then initialize it
         mustNotAlreadyBeDeclared(id.sourceString, { at: id })
         const initializer = exp.rep()
         switch (TypeKeyword.sourceString) {
@@ -238,26 +242,23 @@ export default function analyze(match) {
       },
 
       VariableDeclaration_conditional(TypeKeyword, id, _eq, exp, _questionmark) {
+        //Same as certain but wrapped in an optionalType
         mustNotAlreadyBeDeclared(id.sourceString, { at: id })
         const initializer = exp.rep()
         switch (TypeKeyword.sourceString) {
           case "newnum": { 
-            console.log("Making a newnum")
             mustHaveNumericType(initializer, { at: exp })
             break
           }
           case "newtext": {
-            console.log("Making a newtext")
             mustBeAssignable(initializer, { toType: core.stringType }, { at: exp})
             break
           }
           case "newbool": {
-            console.log("Making a newbool")
             mustHaveBooleanType(initializer, { at: exp })
             break
           }
           case "newlist": {
-            console.log("Making a newlist")
             mustHaveListType(initializer, { at: exp })
             break
           }
@@ -269,6 +270,7 @@ export default function analyze(match) {
       },
 
       IfStatement_long(_if, exp, block, elsepart) {
+        //If else statement
         const test = exp.rep()
         mustHaveBooleanType(test, { at: exp })
         context = context.newChildContext()
@@ -279,6 +281,7 @@ export default function analyze(match) {
       },
 
       IfStatement_elif(_if, exp, block, elifpart) {
+        //if elif... statement
         const test = exp.rep()
         mustHaveBooleanType(test, { at: exp })
         context = context.newChildContext()
@@ -289,6 +292,7 @@ export default function analyze(match) {
       },
 
       IfStatement_short(_if, exp, block) {
+        //If statement
         const test = exp.rep()
         mustHaveBooleanType(test, { at: exp })
         context = context.newChildContext()
@@ -298,6 +302,7 @@ export default function analyze(match) {
       },
 
       ElseIfClause_long(_elif, exp, block, elsepart) {
+        //elif else statement
         const test = exp.rep()
         mustHaveBooleanType(test, { at: exp })
         context = context.newChildContext()
@@ -308,6 +313,7 @@ export default function analyze(match) {
       },
 
       ElseIfClause_chain(_elif, exp, block, elifpart) {
+        //elif elif recursive statement
         const test = exp.rep()
         mustHaveBooleanType(test, { at: exp })
         context = context.newChildContext()
@@ -318,6 +324,7 @@ export default function analyze(match) {
       },
 
       ElseClause(_else, block) {
+        //else statement
         context = context.newChildContext()
         const consequent = block.rep()
         return consequent
@@ -329,15 +336,18 @@ export default function analyze(match) {
       },
 
       ExpressionStatement(exp) {
+        //defer expressions to the other levels
         return exp.rep()
       },
 
       SpeakStatement(_speak, exp) {
+        //Print statement
         const argument = exp.rep()
         return core.printStatement(argument)
       },
 
       ConfessStatement_long(confess, exp) {
+        //Return statement - must be in a function and return something
         mustBeInAFunction({ at: confess })
         mustReturnSomething(context.function, { at: confess })
         const returnExpression = exp.rep()
@@ -346,6 +356,7 @@ export default function analyze(match) {
       },
 
       ConfessStatement_short(confess) {
+        //Return statement - must be in a function but doesn't return anything
         mustBeInAFunction({ at: confess })
         mustNotReturnAnything(context.function, { at: confess })
         return core.shortReturnStatement
@@ -356,6 +367,7 @@ export default function analyze(match) {
       },
 
       UnwrapExpr_unwrapelse(exp1, elseOp, exp2) {
+        //Level 1 expression - unwrap else
         const [optional, op, alternate] = [exp1.rep(), elseOp.sourceString, exp2.rep()]
         mustHaveAnOptionalType(optional, { at: exp1 })
         mustBeAssignable(alternate, { toType: optional.type.baseType }, { at: exp2 })
@@ -363,6 +375,7 @@ export default function analyze(match) {
       },
 
       OrExpr_compare(exp1, _ops, exps) {
+        //Level 2 expression - OR
         let left = exp1.rep()
         mustHaveBooleanType(left, { at: exp1 })
         for (let e of exps.children) {
@@ -374,6 +387,7 @@ export default function analyze(match) {
       },
 
       AndExpr_compare(exp1, _ops, exps) {
+        //Level 3 expression - AND
         let left = exp1.rep()
         mustHaveBooleanType(left, { at: exp1 })
         for (let e of exps.children) {
@@ -385,6 +399,7 @@ export default function analyze(match) {
       },
 
       Comparison_compare(exp1, relop, exp2) {
+        //Level 4 expression - relative comparison operators
         const [left, op, right] = [exp1.rep(), relop.sourceString, exp2.rep()]
         // Inequality operators can only be applied to numbers and strings
         if (["less", "lessis", "more", "moreis"].includes(op)) {
@@ -396,6 +411,7 @@ export default function analyze(match) {
       },
 
       AddExpr_plus(exp1, addOp, exp2) {
+        //Level 5 expression - addition
         const [left, op, right] = [exp1.rep(), addOp.sourceString, exp2.rep()]
         //Addition allows for string concat
         mustHaveNumericOrStringType(left, { at: exp1 })
@@ -405,6 +421,7 @@ export default function analyze(match) {
       },
 
       AddExpr_minus(exp1, minusOp, exp2) {
+        //Level 5 expression - subtraction
         const [left, op, right] = [exp1.rep(), minusOp.sourceString, exp2.rep()]
         mustHaveNumericType(left, { at: exp1 })
         mustAllHaveSameType(left, right, { at: minusOp })
@@ -412,6 +429,7 @@ export default function analyze(match) {
       },
 
       MulExpr_mulop(exp1, mulOp, exp2) {
+        //Level 6 expression - multiplication, division, modulus
         const [left, op, right] = [exp1.rep(), mulOp.sourceString, exp2.rep()]
         mustHaveNumericType(left, { at: exp1 })
         mustAllHaveSameType(left, right, { at: mulOp })
@@ -419,6 +437,7 @@ export default function analyze(match) {
       },
 
       ExpExpr_power(exp1, powerOp, exp2) {
+        //Level 7 expression - exponentiation
         const [left, op, right] = [exp1.rep(), powerOp.sourceString, exp2.rep()]
         mustHaveNumericType(left, { at: exp1 })
         mustAllHaveSameType(left, right, { at: powerOp })
@@ -426,6 +445,7 @@ export default function analyze(match) {
       },
 
       UnaryExpr_unary(unaryOp, exp) {
+        //Level 8 expression - unary operators
         const [op, operand] = [unaryOp.sourceString, exp.rep()]
         let type
         if (op === "!") {
@@ -439,10 +459,12 @@ export default function analyze(match) {
       },
 
       PriExpr_paren(_openparens, exp, _closeparens) {
+        //Level 9 expression - parens
         return exp.rep()
       },
 
       PriExpr_call(exp, open, expList, _close) {
+        //Level 9 expression - calls
         const callee = exp.rep()
         mustBeCallable(callee, { at: exp })
         const exps = expList.asIteration().children
@@ -457,6 +479,7 @@ export default function analyze(match) {
       },
 
       PriExpr_index(exp1, _open, exp2, _close) {
+        //Level 9 expression - subscripts/indexing
         const [list, subscript] = [exp1.rep(), exp2.rep()]
         mustHaveListType(list, { at: exp1 })
         mustHaveIntegerType(subscript, { at: exp2 })
@@ -464,6 +487,7 @@ export default function analyze(match) {
       },
 
       PriExpr_id(id) {
+        //Level 9 expression - ids
         // Check if an id had been declared already
         const entity = context.Lookup(id.sourceString)
         mustHaveBeenFound(entity, id.sourceString, { at: id })
@@ -471,23 +495,26 @@ export default function analyze(match) {
       },
 
       PriExpr_number(n) {
+        //Level 9 expression - numbers
         return n.rep()
       },
 
       List(open, elements, _close) {
+        //List
         const contents = elements.asIteration().children.map((e) => e.rep())
         mustAllHaveSameType(contents, open)
         const elementType = contents.length > 0 ? contents[0].type : "any"
-        console.log("Making list of basetype: ", elementType)
         return core.listExpression(contents, core.listType(elementType))
       },
 
       ident_ident(_first, _rest) {
+        //Identifiers
         const entity = context.Lookup(this.sourceString)
         mustHaveBeenFound(entity, this.sourceString, { at: this })
         return entity
       },
 
+      //Boolean values
       truth(_) {
         return true
       },
@@ -496,6 +523,7 @@ export default function analyze(match) {
         return false
       },
 
+      //Numbers
       numeral_int(_number) {
         return BigInt(this.sourceString)
       },
@@ -504,6 +532,7 @@ export default function analyze(match) {
         return Number(this.sourceString)
       },
 
+      //Strings
       String(_openQuote, _chars, _closeQuote) {
         return this.sourceString
       }
