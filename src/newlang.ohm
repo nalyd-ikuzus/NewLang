@@ -170,8 +170,8 @@ NewLang {
    = "[" ArgumentList "]"
 
   // Whitespace and Comments
-  _
-    = (space | comment)*
+  space
+    += comment
 
   comment
     = ("//" (~"\n" any)*)

@@ -222,13 +222,15 @@ const fixtures = [
             }
         `)
     },
+    {
+        name: "comment",
+        source: `
+        //this is a comment
+        #all of this should be ignored by ohm if things are working as expected
+        `,
+        expected: dedent(``)
+    },
 ]
-
-// console.log("gen: ", generate(analyze(parse(`
-// newfunction listspeak (list : text[], i : int) : void {
-//     confess listspeak(list, i minus 1)
-// }
-// `))))
 
 describe("The code generator", () => {
     for (const fixture of fixtures) {
