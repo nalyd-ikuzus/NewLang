@@ -35,11 +35,9 @@ export default function generate(program) {
         return targetName(f)
       },
       PrintStatement(s) {
-        console.log("Trying to print: ", s)
         output.push(`console.log(${gen(s.argument)});`)
       },
       ReturnStatement(s) {
-        console.log("Trying to return: " , s)
         if (s.expression.kind === "FunctionCall") {
           output.push(`return ${this.FunctionCall(s.expression, true)};`)
         } else {

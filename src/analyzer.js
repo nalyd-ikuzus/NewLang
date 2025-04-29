@@ -77,9 +77,9 @@ export default function analyze(match) {
     function mustBeAType(e, at) {
       let isBasicType
       if (e?.kind === "OptionalType") {
-        isBasicType = /int|float|text|bool|void|any/.test(e.baseType)
+        isBasicType = /int|float|string|bool|void|any/.test(e.baseType)
       } else {
-        isBasicType = /int|float|text|bool|void|any/.test(e)
+        isBasicType = /int|float|string|bool|void|any/.test(e)
       }
       const isCompositeType = /ListType|FunctionType/.test(e?.kind)
       must(isBasicType || isCompositeType, "Type expected", at)
@@ -108,6 +108,7 @@ export default function analyze(match) {
     function typeDescription(type) {
       if (typeof type === "string") return type
       if (type.kind == "ListType") return `${typeDescription(type.baseType)}[]`
+      if (type.kind === "OptionalType") return `${typeDescription(type.baseType)}?`
     }
 
     function mustBeAssignable(e, { toType: type }, at) {
@@ -165,21 +166,20 @@ export default function analyze(match) {
 
       Type_list(type, _brackets) {
         //List type - ensures that type comparison works by making sure we wrap the baseType in a listType
-        return core.listType(type.sourceString)
+        const aliases = {"bool" : "boolean", "text" : "string"}
+        return core.listType(aliases[type.sourceString] ?? type.sourceString)
       },
 
       Type_optional(type, _questionmark) {
         //Optional type - ensures that type comparison works by making sure we wrap the baseType in a optionalType
-        return core.optionalType(type.sourceString)
+        const aliases = {"bool" : "boolean", "text" : "string"}
+        return core.optionalType(aliases[type.sourceString] ?? type.sourceString)
       },
 
        //Simple type - text, int, float, or bool
       Type_simple(type) { 
-        if (type.sourceString === "bool") { 
-          return "boolean" 
-        } else { 
-          return type.sourceString 
-        } 
+        const aliases = {"bool" : "boolean", "text" : "string"}
+        return aliases[type.sourceString] ?? type.sourceString
       },
 
       FunctionDefinition(_newfunc, id, _openparens, parameters, _closeparens, _colon, type, block) {
@@ -257,7 +257,7 @@ export default function analyze(match) {
             break
           }
           case "newtext": {
-            mustBeAssignable(initializer, { toType: core.stringType }, { at: exp})
+            mustBeAssignable(initializer, { toType: core.optionalType(core.stringType) }, { at: exp})
             break
           }
           case "newbool": {
@@ -366,7 +366,7 @@ export default function analyze(match) {
         //Return statement - must be in a function and return something
         mustBeInAFunction({ at: confess })
         const returnExpression = exp.rep()
-        if(returnExpression.kind === "FunctionCall"){
+        if(returnExpression.kind === "FunctionCall"){ //We want to allow recursion in void returning functions
           mustBeReturnable(returnExpression, { from: context.function }, { at: exp })
           return core.returnStatement(returnExpression)
         } else {

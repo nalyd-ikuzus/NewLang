@@ -223,6 +223,32 @@ const fixtures = [
         `)
     },
     {
+        name: "optionalTest",
+        source: `
+            newfunction returnOptional(i : float) : text? {
+                if i less 1.0 {
+                    confess "Less than one"
+                } else {
+                    confess
+                }
+            }
+            
+            newtext optionalTest is returnOptional(0.0)?
+            speak(optionalTest ?? "Greater than one")
+        `,
+        expected: dedent(`
+            function returnOptional_1(i_2) {
+                if ((i_2 < 1)) {
+                    return "Less than one";
+                } else {
+                    return;
+                }
+            }
+            let optionalTest_3 = returnOptional_1(0);
+            console.log((optionalTest_3 ?? "Greater than one"));
+        `)
+    },
+    {
         name: "comment",
         source: `
         //this is a comment
