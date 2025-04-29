@@ -29,9 +29,6 @@ const semanticChecks = [
     ["functions with lists", 'newfunction listHandler(x: int, y: int, z: int) : int[] {confess [x, y, z]}'],
     ["optional return type", 'newfunction optionalReturn(x : int) : int? {if x is 1 {confess 1} else {confess}}'],
     ["assignable optionals", 'newfunction optionalAssign(x : int?) : int? {confess x}'],
-    /**
-     * Currently going through the untested portions of code and trimming, refactoring, or testing that code
-     */
 ]
 
 const semanticErrors = [

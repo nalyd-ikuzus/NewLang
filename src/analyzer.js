@@ -323,6 +323,16 @@ export default function analyze(match) {
         return core.ifStatement(test, consequent, alternate)
       },
 
+      ElseIfClause_short(_elif, exp, block) {
+        //If statement
+        const test = exp.rep()
+        mustHaveBooleanType(test, { at: exp })
+        context = context.newChildContext()
+        const consequent = block.rep()
+        context = context.parent
+        return core.shortIfStatement(test, consequent)
+      },
+
       ElseClause(_else, block) {
         //else statement
         context = context.newChildContext()
