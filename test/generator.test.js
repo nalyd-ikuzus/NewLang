@@ -138,7 +138,97 @@ const fixtures = [
             console.log(l_1[0]);
         `)
     },
+    {
+        name: "goodnum",
+        source: `
+            newfunction goodnumcheck (num : float) : bool {
+                if num more 0.0 {
+                    confess truth
+                } else {
+                    confess untruth
+                }
+            }
+        `,
+        expected: dedent(`
+            function goodnumcheck_1(num_2) {
+                if ((num_2 > 0)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        `)
+    },
+    {
+        name: "listplus",
+        source: `
+            newfunction listplus (list : float[], i : int) : float {
+                if i is 0 {
+                    confess list[i]
+                }
+                confess (list[i] plus listplus(list, i minus 1))
+            }
+        `,
+        expected: dedent(`
+            function listplus_1(list_2, i_3) {
+                if ((i_3 === 0)) {
+                    return list_2[i_3];
+                }
+                return (list_2[i_3] + listplus_1(list_2, (i_3 - 1)));
+            }
+        `)
+    },
+    {
+        name: "listspeak",
+        source: `
+            newfunction listspeak (list : text[], i : int) : void {
+                speak(list[i])
+                if i is 0 {
+                    confess
+                }
+                confess (listspeak(list, i minus 1))
+            }
+        `,
+        expected: dedent(`
+            function listspeak_1(list_2, i_3) {
+                console.log(list_2[i_3]);
+                if ((i_3 === 0)) {
+                    return;
+                }
+                return listspeak_1(list_2, (i_3 - 1));
+            }
+        `)
+    },
+    {
+        name: "speakloop",
+        source: `
+            newfunction speakloop (i : int, end : int) : void{
+                if i is end {
+                    confess
+                } else {
+                    speak("BIG BROTHER")
+                    confess speakloop(i plus 1, end)
+                }
+            }
+        `,
+        expected: dedent(`
+            function speakloop_1(i_2, end_3) {
+                if ((i_2 === end_3)) {
+                return;
+                } else {
+                    console.log("BIG BROTHER");
+                    return speakloop_1((i_2 + 1), end_3);
+                }
+            }
+        `)
+    },
 ]
+
+// console.log("gen: ", generate(analyze(parse(`
+// newfunction listspeak (list : text[], i : int) : void {
+//     confess listspeak(list, i minus 1)
+// }
+// `))))
 
 describe("The code generator", () => {
     for (const fixture of fixtures) {

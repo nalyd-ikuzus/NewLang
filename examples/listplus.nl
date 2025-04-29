@@ -1,6 +1,6 @@
-newfunction listplus (list : float[], i : float) : float {
+newfunction listplus (list : float[], i : int) : float {
     if i is 0 {
-        confess 0
+        confess list[i]
     }
-    confess list[i] + listplus(list, i minus 1)
+    confess (list[i] plus listplus(list, i minus 1))
 }

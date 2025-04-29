@@ -174,7 +174,13 @@ export default function analyze(match) {
       },
 
        //Simple type - text, int, float, or bool
-      Type_simple(type) { return type.sourceString },
+      Type_simple(type) { 
+        if (type.sourceString === "bool") { 
+          return "boolean" 
+        } else { 
+          return type.sourceString 
+        } 
+      },
 
       FunctionDefinition(_newfunc, id, _openparens, parameters, _closeparens, _colon, type, block) {
         //Ensures the id isn't already declares and then defines the function
@@ -359,10 +365,16 @@ export default function analyze(match) {
       ConfessStatement_long(confess, exp) {
         //Return statement - must be in a function and return something
         mustBeInAFunction({ at: confess })
-        mustReturnSomething(context.function, { at: confess })
         const returnExpression = exp.rep()
+        if(returnExpression.kind === "FunctionCall"){
+          mustBeReturnable(returnExpression, { from: context.function }, { at: exp })
+          return core.returnStatement(returnExpression)
+        } else {
+        mustReturnSomething(context.function, { at: confess })
+        //const returnExpression = exp.rep()
         mustBeReturnable(returnExpression, { from: context.function }, { at: exp })
         return core.returnStatement(returnExpression)
+        }
       },
 
       ConfessStatement_short(confess) {

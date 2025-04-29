@@ -39,7 +39,12 @@ export default function generate(program) {
         output.push(`console.log(${gen(s.argument)});`)
       },
       ReturnStatement(s) {
-        output.push(`return ${gen(s.expression)};`)
+        console.log("Trying to return: " , s)
+        if (s.expression.kind === "FunctionCall") {
+          output.push(`return ${this.FunctionCall(s.expression, true)};`)
+        } else {
+          output.push(`return ${gen(s.expression)};`)
+        }
       },
       ShortReturnStatement(s) {
         output.push("return;")
@@ -88,10 +93,10 @@ export default function generate(program) {
       SubscriptExpression(e) {
         return `${gen(e.list)}[${gen(e.index)}]`
       },
-      FunctionCall(c) {
+      FunctionCall(c, recursive=false) {
         const targetCode = `${gen(c.callee)}(${c.args.map(gen).join(", ")})`
         // Calls in expressions vs in statements are handled differently
-        if (c.callee.type.returnType !== voidType) {
+        if (c.callee.type.returnType !== voidType || recursive) {
           return targetCode
         }
 
