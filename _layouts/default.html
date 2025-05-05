@@ -17,7 +17,7 @@
     <div class="wrapper">
       <header>
         <h1 class="header">
-            <img src="docs/logo.JPG" alt="NewLang Image" class="title-image" />
+            <img src="{{ '/docs/logo.JPG' | relative_url }}" alt="NewLang Image" class="title-image" />
         </h1>
         <br />
         <p class="header">{{ site.description | default: site.github.project_tagline }}</p>
