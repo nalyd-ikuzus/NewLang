@@ -11,22 +11,24 @@ function dedent(s) {
 
 const fixtures = [
     {
-        name: "assign",
+        name: "assign", //Testing assignments of different types
         source: `
             newtext x is "Ignorance is strength"
             newnum y is 1
             newnum z is -1
             newlist w is [1, 2, 3]
+            newlist e is []
         `,
         expected: dedent(`
             let x_1 = "Ignorance is strength";
             let y_2 = 1;
             let z_3 = -(1);
             let w_4 = [1,2,3];
+            let e_5 = [];
         `)
     },
     {
-        name: "conditional",
+        name: "conditional", //testing simple conditional statement
         source: `
             newbool thought is truth
             if thought is untruth {
@@ -46,7 +48,7 @@ const fixtures = [
         `)
     },
     {
-        name: "long conditional",
+        name: "long conditional", //testing elifs
         source: `
             newnum x is 3
             if x is 0 {
@@ -75,7 +77,7 @@ const fixtures = [
         `)
     },
     {
-        name: "short func",
+        name: "short func", //testing a tiny function
         source: `
             newfunction shortReturn(x: int) : void { confess }
             shortReturn(1)
@@ -88,7 +90,7 @@ const fixtures = [
         `)
     },
     {
-        name: "confess",
+        name: "confess", //testing returning actual values from a function
         source: `
             newfunction longReturn(x: int) : int { confess x }
             speak(longReturn(51345))
@@ -101,13 +103,13 @@ const fixtures = [
         `)
     },
     {
-        name: "relops",
+        name: "relops", //testing relative operators (folded since the introduction of optimization)
         source: `
             speak(1 lessis 2 and "x" more "y" and 3.5 less 1.2)
         `,
         expected: dedent(`
-            console.log((((1 <= 2) && ("x" > "y")) && (3.5 < 1.2)));
-        `)
+            console.log((("x" > "y") && false));
+        `) //Changed from "console.log((((1 <= 2) && ("x" > "y")) && (3.5 < 1.2)));" since the addition of optimization
     },
     {
         name: "or",
@@ -115,8 +117,8 @@ const fixtures = [
             speak(truth or 1 less 2 or untruth)
         `,
         expected: dedent(`
-            console.log(((true || (1 < 2)) || false));
-        `)
+            console.log(true);
+        `)//Changed from "console.log(((true || (1 < 2)) || false));" since the addition of optimization
     },
     {
         name: "and",
@@ -124,11 +126,11 @@ const fixtures = [
             speak(truth and untruth and 1 less 2)
         `,
         expected: dedent(`
-            console.log(((true && false) && (1 < 2)));
-        `)
+            console.log(false);
+        `)//Changed from "console.log(((true && false) && (1 < 2)));" since the addition of optimization
     },
     {
-        name: "subscript",
+        name: "subscript", //testing subscripting lists
         source: `
             newlist l is [1,2]
             speak(l[0])
@@ -139,7 +141,7 @@ const fixtures = [
         `)
     },
     {
-        name: "goodnum",
+        name: "goodnum", //testing a simple sign -> bool function
         source: `
             newfunction goodnumcheck (num : float) : bool {
                 if num more 0.0 {
@@ -160,7 +162,7 @@ const fixtures = [
         `)
     },
     {
-        name: "listplus",
+        name: "listplus", //testing a simple recursive function that sums a list
         source: `
             newfunction listplus (list : float[], i : int) : float {
                 if i is 0 {
@@ -179,7 +181,7 @@ const fixtures = [
         `)
     },
     {
-        name: "listspeak",
+        name: "listspeak", //testing a simple recursive function that prints a list's contents
         source: `
             newfunction listspeak (list : text[], i : int) : void {
                 speak(list[i])
@@ -200,7 +202,7 @@ const fixtures = [
         `)
     },
     {
-        name: "speakloop",
+        name: "speakloop", //testing a simple recursive function that prints "BIG BROTHER" a number of times
         source: `
             newfunction speakloop (i : int, end : int) : void{
                 if i is end {
@@ -223,7 +225,33 @@ const fixtures = [
         `)
     },
     {
-        name: "optionalTest",
+        name: "returnTesting", //testing a nonsensical function that uses a unary and binary op on a function call during its return
+        source: `
+            newfunction returnTesting(i : float) : float {
+                if i is 0.0 {
+                    confess 1.0
+                } elif i more 0.0 {
+                    confess -returnTesting(i minus 4.0)
+                } elif i less 0.0 {
+                    confess returnTesting(i plus 3.0) divide 1
+                }
+            }
+        `,
+        expected: dedent(`
+        function returnTesting_1(i_2) {
+            if ((i_2 === 0)) {
+                return 1;
+            } else
+            if ((i_2 > 0)) {
+                return -(returnTesting_1((i_2 - 4)));
+            } else
+            if ((i_2 < 0)) {
+                return returnTesting_1((i_2 + 3));
+            }
+        }`)
+    },
+    {
+        name: "optionalTest", //testing a function that might not return anything
         source: `
             newfunction returnOptional(i : float) : text? {
                 if i less 1.0 {
@@ -249,7 +277,7 @@ const fixtures = [
         `)
     },
     {
-        name: "comment",
+        name: "comment", //testing comments to ensure they are ignored
         source: `
         //this is a comment
         #all of this should be ignored by ohm if things are working as expected
@@ -262,7 +290,6 @@ describe("The code generator", () => {
     for (const fixture of fixtures) {
         it(`produces expected js output for the ${fixture.name} program`, () => {
             const actual = generate(optimize(analyze(parse(fixture.source))))
-            console.log("Expected: ", fixture.expected, "\nActual: ", actual)
             assert.deepEqual(actual, fixture.expected)
         })
     }
